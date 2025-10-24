@@ -1,0 +1,182 @@
+:root {
+  --bg: #f3f4f6;
+  --card: #ffffff;
+  --accent: #2b6ef6;
+  --accent-600: #255ed6;
+  --muted: #6b7280;
+  --text: #111827;
+  --success: #16a34a;
+  --danger: #ef4444;
+  --radius: 12px;
+  --shadow-sm: 0 2px 8px rgba(16, 24, 40, 0.06);
+  --shadow-md: 0 12px 30px rgba(16, 24, 40, 0.1);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+html,
+body {
+  height: 100%;
+  background: linear-gradient(180deg, #f7f8fa 0%, var(--bg) 100%);
+  font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial;
+  color: var(--text);
+}
+
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 20px;
+}
+
+/* Responsive grid for forms */
+.container {
+  width: 100%;
+  max-width: 980px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 24px;
+  align-items: start;
+  padding: 12px;
+}
+
+/* Each form as a card */
+.container form {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.9), var(--card));
+  border-radius: var(--radius);
+  padding: 22px;
+  box-shadow: var(--shadow-md);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-items: stretch;
+  min-height: 180px;
+}
+
+/* Headings and result */
+.container h1 {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 4px;
+}
+
+.container h2#result1,
+.container h2#result2 {
+  font-size: 0.95rem;
+  font-weight: 600;
+  margin-top: 6px;
+  min-height: 22px;
+  color: var(--muted);
+  transition: color 160ms ease, transform 120ms ease;
+}
+
+/* Input styling */
+input[type="text"] {
+  width: 100%;
+  padding: 12px 14px;
+  border-radius: 10px;
+  border: 1px solid rgba(16, 24, 40, 0.08);
+  background: #fff;
+  box-shadow: var(--shadow-sm) inset;
+  font-size: 0.95rem;
+  color: var(--text);
+  transition: box-shadow 150ms ease, border-color 150ms ease,
+    transform 100ms ease;
+  outline: none;
+}
+
+input::placeholder {
+  color: rgba(0, 0, 0, 0.35);
+}
+
+/* Focus states */
+input:focus {
+  border-color: var(--accent);
+  box-shadow: 0 8px 24px rgba(43, 110, 246, 0.06),
+    0 0 0 4px rgba(43, 110, 246, 0.06);
+  transform: translateY(-1px);
+}
+
+/* Button row */
+.container button {
+  cursor: pointer;
+  border: none;
+  padding: 10px 14px;
+  border-radius: 10px;
+  font-weight: 700;
+  font-size: 0.95rem;
+  transition: transform 120ms ease, box-shadow 120ms ease, opacity 120ms ease;
+  box-shadow: 0 8px 18px rgba(16, 24, 40, 0.06);
+  align-self: end;
+  min-width: 80px;
+  background: linear-gradient(180deg, var(--accent), var(--accent-600));
+  color: #fff;
+}
+
+/* Make buttons full width on narrow forms */
+.container form:has(input:focus) button,
+.container form:has(input:valid) button {
+  /* no-op to keep specificity for browsers that support :has */
+}
+
+.container button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 18px 40px rgba(37, 94, 214, 0.12);
+}
+
+.container button:active {
+  transform: translateY(0);
+}
+
+.container button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Result states */
+.result-success {
+  color: var(--success);
+}
+
+.result-error {
+  color: var(--danger);
+}
+
+/* Small screens adjustments */
+@media (max-width: 640px) {
+  .container {
+    grid-template-columns: 1fr;
+    gap: 16px;
+    padding: 6px;
+  }
+  .container form {
+    padding: 18px;
+  }
+  .container button {
+    width: 100%;
+    align-self: stretch;
+  }
+  .container h1 {
+    font-size: 1rem;
+  }
+  .container h2#result1,
+  .container h2#result2 {
+    font-size: 0.95rem;
+  }
+}
+
+/* Utility */
+.center {
+  text-align: center;
+}
+.muted {
+  color: var(--muted);
+}
